@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct SigninScreen: View {
+struct ChangePasswordScreen: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var username: String = ""
     @State private var password: String = ""
+    @State private var confirmPassword: String = ""
     @State private var navigateToRegister = false
     @State private var navigateToForgot = false
 
@@ -27,46 +27,47 @@ struct SigninScreen: View {
                                 dismiss()
                             }
                         Spacer()
-                        Text("Login")
+                        Text("Set Password")
                             .foregroundColor(Color(hex: 0xF4B5A4))
                             .padding(.trailing, 44)
                         Spacer()
                     }
-                    Text("Welcome")
+                    Text("change the password")
                         .font(.poppinsSemiBold(size: 22))
                         .foregroundColor(.white)
                         .padding(.leading, 24)
                         .padding(.top, 36)
-                    Text("Please enter your details to proceed.")
+                    Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ")
                         .font(.poppinsRegular(size: 14))
                         .foregroundColor(.white)
-                        .padding(.leading, 24)
+                        .padding(.horizontal, 24)
                         .padding(.top, 2)
-                    Text("Username or email")
-                        .font(.poppinsMedium(size: 15))
-                        .foregroundColor(.white)
-                        .padding(.leading, 24)
-                        .padding(.top, 52)
-                    CommonTextField(
-                        placeholder: "Username",
-                        text: $username
-                    )
-                    .padding(.horizontal, 24)
                     Text("Password")
                         .font(.poppinsMedium(size: 15))
                         .foregroundColor(.white)
                         .padding(.leading, 24)
-                        .padding(.top, 12)
+                        .padding(.top, 52)
                     CommonTextField(
                         placeholder: "Password",
                         text: $password,
                         isSecure: true
                     )
                     .padding(.horizontal, 24)
+                    Text("Confirm Password")
+                        .font(.poppinsMedium(size: 15))
+                        .foregroundColor(.white)
+                        .padding(.leading, 24)
+                        .padding(.top, 12)
+                    CommonTextField(
+                        placeholder: "ConfirmPassword",
+                        text: $confirmPassword,
+                        isSecure: true
+                    )
+                    .padding(.horizontal, 24)
                     Button(action: {
                         print("Button tapped!")
                     }) {
-                        Text("Log In")
+                        Text("Reset Password")
                             .font(.poppinsBold(size: 16))
                             .foregroundColor(Color(hex:0xCC7861))
                             .frame(maxWidth: .infinity)
@@ -76,63 +77,17 @@ struct SigninScreen: View {
                     }
                     .padding(.top, 48)
                     .padding(.horizontal, 100)
-                    HStack{
-                        Spacer()
-                        Text("Forgot Password?")
-                            .font(.poppinsSemiBold(size: 14))
-                            .foregroundColor(.white)
-                            .multilineTextAlignment(.center)
-                            .padding(.top, 12)
-                        Spacer()
-                    }
-                    .onTapGesture {
-                        navigateToForgot = true
-                    }
-                    .navigationDestination(isPresented:$navigateToForgot){
-                        ForgotPassWordScreen().navigationBarBackButtonHidden(true)
-                    }
-                    Spacer()
-                    HStack{
-                        Spacer()
-                        Text("or sign up with")
-                            .font(.poppinsSemiBold(size: 13))
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
-                    HStack{
-                        Spacer()
-                        Image("fbIcon")
-                            .padding(.horizontal, 4)
-                        Image("ggIcon")
-                            .padding(.horizontal, 4)
-                        Spacer()
-                    }
-                    .padding(.top, 12)
-                    HStack{
-                        Spacer()
-                        Text("Don’t have an account?")
-                            .font(.poppinsRegular(size: 13))
-                            .foregroundColor(.white)
-                        Text("Sign Up")
-                            .font(.poppinsRegular(size: 13))
-                            .foregroundColor(Color(hex: 0xF4B5A4))
-                        Spacer()
-                    }
-                    .onTapGesture {
-                        navigateToRegister = true
-                    }
-                    .padding(.top, 12)
-                    .padding(.bottom, 22)
-                    .navigationDestination(isPresented:$navigateToRegister){
-                        RegisterScreen().navigationBarBackButtonHidden(true)
-                    }
+//                    .navigationDestination(isPresented:$navigateToRegister){
+//                        RegisterScreen().navigationBarBackButtonHidden(true)
+//                    }
                 }
-                
+                EnableSwipeBackGesture()
+                    .frame(width: 0, height: 0)
             }
         }
     }
 }
 
 #Preview {
-    SigninScreen()
+    ChangePasswordScreen()
 }

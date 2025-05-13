@@ -9,9 +9,19 @@ import SwiftUI
 
 @main
 struct swiftUI_demoApp: App {
+    @State private var isScreen = "splash"
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isScreen == "onboard" {
+                OnBoarding(isScreen: $isScreen)
+            } else if isScreen == "splash" {
+                LaunchA(isScreen: $isScreen)
+            }else if isScreen == "view"{
+                BottomTab()
+            }else {
+                AuthenContainer(isScreen: $isScreen)
+            }
         }
     }
 }

@@ -8,19 +8,30 @@
 import SwiftUI
 
 struct LaunchA: View {
+    @Binding var isScreen: String
+
     var body: some View {
         
-        ZStack{
-            Color(hex: 0xF4B5A4)
-                            .ignoresSafeArea()
-            Image("iconHome")
+        NavigationStack{
+            ZStack{
+                Color(hex: 0xF4B5A4)
+                    .ignoresSafeArea()
+                VStack{
+                    Image("iconHome")
+                    Image("txtLogo1").padding(.top, 8)
+                    Image("txtLogo2")
+                }
+            }
+            .task {
+                try? await Task.sleep(nanoseconds: 3_000_000_000)
+                isScreen = "onboard"
+            }
         }
     }
 }
 
-struct LaunchA_Preview: PreviewProvider {
-    
-    static var previews: some View {
-        LaunchA()
+#Preview {
+    StatefulPreviewWrapper("") { isScreen in
+        LaunchA(isScreen: isScreen)
     }
 }

@@ -29,9 +29,22 @@
 		F54A4F3E2DC9F2A800B39B31 /* swiftUI-demoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swiftUI-demoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		F5AE0C0C2DD0639100F0E9A0 /* Exceptions for "swiftUI-demo" folder in "swiftUI-demo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = F54A4F262DC9F2A400B39B31 /* swiftUI-demo */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		F54A4F292DC9F2A400B39B31 /* swiftUI-demo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				F5AE0C0C2DD0639100F0E9A0 /* Exceptions for "swiftUI-demo" folder in "swiftUI-demo" target */,
+			);
 			path = "swiftUI-demo";
 			sourceTree = "<group>";
 		};
@@ -43,6 +56,11 @@
 		F54A4F412DC9F2A800B39B31 /* swiftUI-demoUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "swiftUI-demoUITests";
+			sourceTree = "<group>";
+		};
+		F5AE0C122DD06DA100F0E9A0 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +93,7 @@
 		F54A4F1E2DC9F2A400B39B31 = {
 			isa = PBXGroup;
 			children = (
+				F5AE0C122DD06DA100F0E9A0 /* Resources */,
 				F54A4F292DC9F2A400B39B31 /* swiftUI-demo */,
 				F54A4F372DC9F2A800B39B31 /* swiftUI-demoTests */,
 				F54A4F412DC9F2A800B39B31 /* swiftUI-demoUITests */,
@@ -101,7 +120,7 @@
 			buildPhases = (
 				F54A4F232DC9F2A400B39B31 /* Sources */,
 				F54A4F242DC9F2A400B39B31 /* Frameworks */,
-				F54A4F252DC9F2A400B39B31 /* Resources */,
+				F5AE0C042DD062D700F0E9A0 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -109,6 +128,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				F54A4F292DC9F2A400B39B31 /* swiftUI-demo */,
+				F5AE0C122DD06DA100F0E9A0 /* Resources */,
 			);
 			name = "swiftUI-demo";
 			packageProductDependencies = (
@@ -208,13 +228,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F54A4F252DC9F2A400B39B31 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F54A4F322DC9F2A800B39B31 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +236,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F54A4F3C2DC9F2A800B39B31 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F5AE0C042DD062D700F0E9A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
