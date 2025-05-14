@@ -81,6 +81,7 @@ struct OnBoardingA: View {
                             .resizable()
                             .scaledToFit()
                         Button(action: {
+                            isScreen = "authen"
                             navigateToNextScreen = true
                         }) {
                             HStack{
@@ -90,6 +91,10 @@ struct OnBoardingA: View {
                                         hex: 0x4B4544
                                     ))
                                 Image("rightIcon")
+                                    .foregroundColor(Color(
+                                        hex: 0x4B4544
+                                    ))
+                                
                                 
                             }
                         }

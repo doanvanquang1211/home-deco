@@ -5,24 +5,31 @@
 //  Created by Đoàn Văn Quang on 11/5/25.
 //
 
-struct Categories: Identifiable {
-    let id = UUID()
-    let name: String
-}
 
 struct Collections: Identifiable {
     let id = UUID()
     let name: String
-    let image:String
-    let description:String
-    let price:String
+    let image: String
+    let description: String
+    let content: String
+    let price: String
     let isFavourite: Bool
 }
 
 import SwiftUI
 
 struct HomeScreen: View {
-    
+    @State private var isShowTitle = true
+    @State private var navigateToNextScreen = false
+    @State private var title = "New Collection"
+    @State private var dataDetail: Collections? = nil
+    @Binding var selectedTab: Tab
+
+    func gotoDetail(_ data:Collections){
+        navigateToNextScreen = true
+        dataDetail = data
+    }
+
     var body: some View {
         
         NavigationStack{
@@ -45,7 +52,7 @@ struct HomeScreen: View {
                             .padding(.trailing, 12)
                     }
                     .padding(.horizontal, 12)
-                    ScrollView{
+                    ScrollView(showsIndicators: false){
                         VStack(alignment:.leading){
                             SlideView()
                             CategorySlider()
@@ -55,13 +62,14 @@ struct HomeScreen: View {
                                     .foregroundColor(Color(hex: 0xF4B5A4))
                                     .padding(.top, 12)
                                 Image("bestSellerImage")
+                                    .resizable()
                                     .foregroundColor(Color(
                                         hex: 0xDCBEB6
                                     ))
                             }
                             .padding(.horizontal, 24)
-                            CollectionNew()
-                            
+                            CollectionNew(isShowTitle: $isShowTitle, title: $title)
+                            .padding(.horizontal, 24)
                         }
                     }
                 }
@@ -73,5 +81,6 @@ struct HomeScreen: View {
 }
 
 #Preview {
-    HomeScreen()
+    @State var selectedTab: Tab = .home
+    HomeScreen(selectedTab: $selectedTab)
 }

@@ -1,7 +1,14 @@
 import SwiftUI
 
+enum Tab {
+    case home
+    case category
+    case Cart
+    case WishList
+    case profile
+}
 struct BottomTab: View {
-    
+    @State private var selectedTab: Tab = .home
     init() {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -14,31 +21,36 @@ struct BottomTab: View {
         }
     
     var body: some View {
-        TabView {
-            HomeScreen()
+        TabView(selection: $selectedTab){
+            HomeScreen(selectedTab: $selectedTab)
                 .tabItem {
                     Image("homeIcon")
                 }
+                .tag(Tab.home)
             
-            Category()
+            CategoryScreen(selectedTab: $selectedTab)
                 .tabItem {
                     Image("cateIcon")
                 }
+                .tag(Tab.category)
             
             Cart()
                 .tabItem {
                     Image("cartIcon")
                 }
+                .tag(Tab.category)
+            
             WishList()
                 .tabItem {
                     Image("wishListIcon")
                 }
+                .tag(Tab.WishList)
             
             Profile()
                 .tabItem {
                     Image("profileIcon")
                 }
-            
+                .tag(Tab.profile)
         }
         .accentColor(Color(hex: 0xF4B5A4))
     }
