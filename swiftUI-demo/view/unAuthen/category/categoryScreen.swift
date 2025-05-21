@@ -93,7 +93,7 @@ struct CategoryScreen: View {
                             }
                         }
                         .navigationDestination(isPresented: $navigateToNextScreen) {
-                            SubCategoryScreen(title:$title)
+                            SubCategoryScreen(selectedTab: $selectedTab, title:$title)
                                 .navigationBarBackButtonHidden(true)
                         }
 

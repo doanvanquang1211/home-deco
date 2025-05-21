@@ -10,10 +10,13 @@ import SwiftUI
 
 struct ProductDetailScreen: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var cartVM: CartViewModel
+    @Binding var selectedTab: Tab
+    @State private var goToCart = false
 
     @State private var isShowTitle = false
     @Binding var title : String
-    var dataDetail: Collections
+    var dataDetail: Product
     let rating: Double = 4.5
 
     var body: some View {
@@ -32,6 +35,7 @@ struct ProductDetailScreen: View {
                         Text(title)
                             .font(.poppinsBold(size: 20))
                             .foregroundColor(Color(hex: 0xF4B5A4))
+                            .multilineTextAlignment(.leading)
                         Spacer()
                         Image("searchIcon")
                     }
@@ -73,20 +77,34 @@ struct ProductDetailScreen: View {
                                 Spacer()
                                 StarRatingView(rating: rating)
                             }
-                            
-                            HStack{
-                                Spacer()
-                                Text("Add to Cart")
-                                    .font(.poppinsMedium(size: 20))
-                                    .foregroundColor(Color(hex: 0xF4B5A4))
-                                    .padding(.top, 4)
-                                    .padding(.vertical, 8)
-                                Spacer()
+                            Button(action: {
+                                cartVM.addToCart(product: dataDetail)
+                                goToCart = true
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Text("Add to Cart")
+                                        .font(.poppinsMedium(size: 20))
+                                        .foregroundColor(Color(hex: 0xF4B5A4))
+                                        .padding(.top, 4)
+                                        .padding(.vertical, 8)
+                                    Spacer()
+                                }
+                                .background(Color(hex: 0x4B4544))
+                                .cornerRadius(23)
+                                .padding(.horizontal, 65)
+                                .padding(.top, 24)
                             }
-                            .background(Color(hex: 0x4B4544))
-                            .cornerRadius(23)
-                            .padding(.horizontal, 65)
-                            .padding(.top, 24)
+
+                            NavigationLink(
+                                destination: CartScreen(selectedTab: $selectedTab)
+                                    .navigationBarBackButtonHidden(true),
+                                isActive: $goToCart
+                            ) {
+                                EmptyView()
+                            }
+
+                            
                         }
                     }
                     .padding(.top, 24)
@@ -101,13 +119,16 @@ struct ProductDetailScreen: View {
 
 #Preview{
     @State var title = ""
-    let sampleData = Collections(
+    @State var selectedTab:Tab = .home
+
+    let sampleData = Product(
         name: "Aluminum chair",
         image: "productImage1",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
         content:"Lorem",
         price: "1.200",
-        isFavourite: false
+        isFavourite: false,
+        quantity: 1
     )
-    ProductDetailScreen(title: $title, dataDetail: sampleData)
+    ProductDetailScreen(selectedTab: $selectedTab, title: $title, dataDetail: sampleData)
 }

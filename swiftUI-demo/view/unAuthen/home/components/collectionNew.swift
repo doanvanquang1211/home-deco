@@ -10,57 +10,10 @@ import SwiftUI
 struct CollectionNew : View {
     @Binding var isShowTitle: Bool
     @Binding var title: String
+    @Binding var selectedTab: Tab
+    let products: [Product]
 
-    let collections: [Collections] = [
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage1",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "1.200",
-            isFavourite: false
-        ),
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage2",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "12.000",
-            isFavourite: false
-        ),
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage3",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "12.700",
-            isFavourite: false
-        ),
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage4",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "22.200",
-            isFavourite: false
-        ),
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage3",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "12.700",
-            isFavourite: false
-        ),
-        Collections(
-            name: "Aluminum chair",
-            image: "productImage4",
-            description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
-            price: "22.200",
-            isFavourite: false
-        ),
-    ]
+    
     
     let columns = [
         GridItem(.flexible()),
@@ -80,9 +33,9 @@ struct CollectionNew : View {
             }
             ScrollView(showsIndicators: false) {
                 LazyVGrid(columns: columns) {
-                    ForEach(collections) { value in
+                    ForEach(products) { value in
                         NavigationLink(
-                            destination: ProductDetailScreen(title: $title, dataDetail: value)
+                            destination: ProductDetailScreen(selectedTab: $selectedTab, title: $title, dataDetail: value)
                                 .navigationBarBackButtonHidden(true)
                         ) {
                             VStack(alignment:.leading){
@@ -91,10 +44,12 @@ struct CollectionNew : View {
                                 Text(value.name)
                                     .font(.poppinsMedium(size: 15))
                                     .foregroundColor(Color(hex: 0xF4B5A4))
+                                    .multilineTextAlignment(.leading)
                                 Text(value.description)
                                     .font(.poppinsMedium(size: 12))
                                     .foregroundColor(.white)
                                     .padding(.top, 4)
+                                    .multilineTextAlignment(.leading)
                                 Divider()
                                     .background(Color(hex: 0xF4B5A4))
                                     .frame(height: 1)

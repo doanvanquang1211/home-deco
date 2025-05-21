@@ -9,6 +9,10 @@ enum Tab {
 }
 struct BottomTab: View {
     @State private var selectedTab: Tab = .home
+    
+    @StateObject var cartVM = CartViewModel()
+
+    
     init() {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
@@ -34,11 +38,11 @@ struct BottomTab: View {
                 }
                 .tag(Tab.category)
             
-            Cart()
+            CartScreen(selectedTab: $selectedTab)
                 .tabItem {
                     Image("cartIcon")
                 }
-                .tag(Tab.category)
+                .tag(Tab.Cart)
             
             WishList()
                 .tabItem {
@@ -53,6 +57,7 @@ struct BottomTab: View {
                 .tag(Tab.profile)
         }
         .accentColor(Color(hex: 0xF4B5A4))
+        .environmentObject(cartVM)
     }
 }
 

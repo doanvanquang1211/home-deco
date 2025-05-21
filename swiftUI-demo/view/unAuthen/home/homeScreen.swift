@@ -6,7 +6,7 @@
 //
 
 
-struct Collections: Identifiable {
+struct Product: Identifiable, Equatable {
     let id = UUID()
     let name: String
     let image: String
@@ -14,6 +14,8 @@ struct Collections: Identifiable {
     let content: String
     let price: String
     let isFavourite: Bool
+    var quantity: Int
+
 }
 
 import SwiftUI
@@ -22,13 +24,70 @@ struct HomeScreen: View {
     @State private var isShowTitle = true
     @State private var navigateToNextScreen = false
     @State private var title = "New Collection"
-    @State private var dataDetail: Collections? = nil
+    @State private var dataDetail: Product? = nil
     @Binding var selectedTab: Tab
 
-    func gotoDetail(_ data:Collections){
+    func gotoDetail(_ data:Product){
         navigateToNextScreen = true
         dataDetail = data
     }
+    
+    let collections: [Product] = [
+        Product(
+            name: "CADIZ Low armchair",
+            image: "productImage7",
+            description: "Vải bọc mềm, phù hợp với không gian phòng khách hoặc lounge hiện đại",
+            content:"Ghế bành thấp (Low armchair), Màu be với gối tựa vàng nghệ, Khung kim loại mảnh, kiểu dáng hiện đại. ",
+            price: "1.200",
+            isFavourite: false,
+            quantity: 1
+        ),
+        Product(
+            name: "Aluminum chair",
+            image: "productImage5",
+            description: "Lorem ipsum dolor sit amet,consectetur adipiscing elit",
+            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
+            price: "12.000",
+            isFavourite: false,
+            quantity: 1
+        ),
+        Product(
+            name: "Aluminum chair",
+            image: "productImage8",
+            description: "Lorem ipsum dolor sit amet,consectetur adipiscing elit",
+            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
+            price: "12.700",
+            isFavourite: false,
+            quantity: 1
+        ),
+        Product(
+            name: "Aluminum chair",
+            image: "productImage9",
+            description: "Lorem ipsum dolor sit amet,consectetur adipiscing elit",
+            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
+            price: "22.200",
+            isFavourite: false,
+            quantity: 1
+        ),
+        Product(
+            name: "Aluminum chair",
+            image: "productImage10",
+            description: "Lorem ipsum dolor sit amet,consectetur adipiscing elit",
+            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
+            price: "12.700",
+            isFavourite: false,
+            quantity: 1
+        ),
+        Product(
+            name: "Aluminum chair",
+            image: "productImage11",
+            description: "Lorem ipsum dolor sit amet,consectetur adipiscing elit",
+            content:"Lorem ipsum dolor sit amet consectetur. Odio neque commodo id aenean quis magna. Auctor neque id pharetra gravida. Libero scelerisque ut mauris volutpat risus nec facilisi adipiscing. Augue mollis amet.",
+            price: "22.200",
+            isFavourite: false,
+            quantity: 1
+        ),
+    ]
 
     var body: some View {
         
@@ -68,8 +127,8 @@ struct HomeScreen: View {
                                     ))
                             }
                             .padding(.horizontal, 24)
-                            CollectionNew(isShowTitle: $isShowTitle, title: $title)
-                            .padding(.horizontal, 24)
+                            CollectionNew(isShowTitle: $isShowTitle, title: $title, selectedTab:$selectedTab, products: collections)
+                                .padding(.horizontal, 24)
                         }
                     }
                 }
